@@ -1,17 +1,18 @@
 import { Link } from 'expo-router'
 import { View, Text, StyleSheet } from 'react-native'
 
-const About = () => {
-  return (
-    <View style={styles.container}>
-        <Text style={styles.title}>
-            About Us
-        </Text>
-      <Text style={styles.aboutcontentHead}>
-        This is the about us page where you get the chance to know us better.
-      </Text>
+import { Colors } from "../constants/Colors"
+import { useColorScheme } from "react-native"
 
-      <Link href="/" style={styles.link}>Home Page</Link>
+const About = () => {
+  const colorScheme = useColorScheme()
+  const theme = Colors[colorScheme] ?? Colors.light
+
+  return (
+    <View style={[styles.container, {backgroundColor: theme.background}]}>
+      <Text style={[styles.title, {color: theme.title}]}>About Page</Text>
+
+      <Link href="/" style={[styles.link, {color: theme.text}]}>Home Page</Link>
     </View>
   )
 }
@@ -27,15 +28,10 @@ const styles = StyleSheet.create({
   },
   title: {
     fontWeight: 'bold',
-    color: '#A020F8',
     fontSize: 18,
   },
   link: {
     marginVertical: 10,
     borderBottomWidth: 1
-  },
-  aboutcontentHead:{
-    color:'#A020F0',
-    marginHorizontal: 20,
   }
 })
